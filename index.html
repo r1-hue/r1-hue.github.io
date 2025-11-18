@@ -1,1 +1,253 @@
+<!doctype html>
 
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>r1-hue — 個人網站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050505; /* near black */
+      --panel:#0b0b0b;
+      --muted:#9aa0a6;
+      --green-1:#16a34a; /* vivid green */
+      --green-2:#00c853; /* brighter green */
+      --yellow:#ffd400; /* vivid yellow */
+      --glass: rgba(255,255,255,0.03);
+      --accent-gradient: linear-gradient(90deg,var(--green-2),var(--yellow));
+      --card-shadow: 0 12px 32px rgba(0,0,0,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(800px 300px at 10% 10%, rgba(0,200,83,0.03), transparent),
+                  radial-gradient(600px 240px at 90% 90%, rgba(255,212,0,0.02), transparent),
+                  var(--bg);
+      color:#eafaf1;-webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;line-height:1.5;padding-bottom:60px
+    }.container{max-width:1100px;margin:28px auto;padding:20px}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;box-shadow:var(--card-shadow);}
+.logo svg{width:34px;height:34px;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.6))}
+.title{font-family:Oswald, sans-serif;font-size:18px;letter-spacing:1px}
+.subtitle{font-size:12px;color:var(--muted)}
+
+nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:14px}
+nav a:hover{color:var(--green-1)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px;align-items:center}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--card-shadow)}
+.intro h1{margin:0;font-size:36px}
+.intro p{color:var(--muted);margin-top:8px}
+.cta{margin-top:16px}
+.btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+.btn.primary{background:var(--accent-gradient);color:#07110b}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+.profile{display:flex;flex-direction:column;align-items:center;gap:12px}
+.avatar{width:160px;height:160px;border-radius:14px;background:linear-gradient(180deg,var(--green-2),var(--green-1));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:48px;color:#05110a}
+.meta{color:var(--muted);font-size:14px;text-align:center}
+
+/* sections */
+section{margin-top:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.skills{display:flex;flex-direction:column;gap:10px}
+.skill{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+.meter{height:8px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;margin-left:12px;flex:1}
+.meter > i{display:block;height:100%;background:var(--accent-gradient);}
+
+.projects .project{display:flex;flex-direction:column;gap:8px}
+.projects .thumb{height:140px;border-radius:8px;overflow:hidden;background:#111}
+.projects .meta{display:flex;justify-content:space-between;align-items:center}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+
+.contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+.contact-grid{display:grid;grid-template-columns:1fr 320px;gap:14px}
+
+footer{margin-top:28px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+@media (max-width:980px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(3,1fr)}.contact-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}nav{display:none}}
+
+/* subtle floating animation */
+.float{transition:transform .4s cubic-bezier(.2,.9,.3,1)}
+.float:hover{transform:translateY(-6px)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="white" fill-opacity="0.08" />
+            <path d="M16 44 L28 20 L36 44 L48 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div>
+          <div class="title">r1-hue</div>
+          <div class="subtitle">Personal — Portfolio</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header><main>
+  <section class="hero">
+    <div class="card intro float">
+      <h1>嗨，我是 <span style="background:linear-gradient(90deg,var(--green-2),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent;">r1-hue</span></h1>
+      <p>混合設計、程式與資管思維的跨域創作者。喜歡把概念做成有感的作品 — 無論是網頁互動、視覺設計或小工具。</p>
+      <div class="cta">
+        <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">聯絡我</button>
+        <button class="btn ghost" onclick="window.open('#','_self')">下載簡歷</button>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <div class="card" style="display:flex;flex-direction:column;min-width:140px">
+          <div style="font-size:12px;color:var(--muted)">位置</div>
+          <div style="font-weight:700">台灣</div>
+        </div>
+        <div class="card" style="display:flex;flex-direction:column;min-width:140px">
+          <div style="font-size:12px;color:var(--muted)">專長</div>
+          <div style="font-weight:700">前端 / 設計 / 資料分析</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="card profile float">
+      <div class="avatar">R1</div>
+      <div style="text-align:center">
+        <div style="font-weight:700">r1-hue</div>
+        <div class="meta">—</div>
+      </div>
+      <div style="width:100%;display:flex;gap:8px;justify-content:center;margin-top:6px">
+        <a href="#projects" class="btn ghost">作品</a>
+        <a href="#gallery" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--yellow)">相簿</a>
+      </div>
+    </aside>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>（尚未提供個人介紹內容）</p>
+</section>
+
+  <section id="skills" style="margin-top:14px">
+    <h2>Skills</h2>
+    <div class="grid-3" style="margin-top:10px">
+      <div class="card">
+        <h3>技術</h3>
+        <div class="skills" style="margin-top:8px">
+          <div class="skill"><div style="font-weight:600">HTML / CSS / JS</div><div style="display:flex;align-items:center;gap:12px"><div class="meter"><i style="width:88%"></i></div><div style="width:34px;text-align:right">88%</div></div></div>
+          <div class="skill"><div style="font-weight:600">React / Vue</div><div style="display:flex;align-items:center;gap:12px"><div class="meter"><i style="width:70%"></i></div><div style="width:34px;text-align:right">70%</div></div></div>
+          <div class="skill"><div style="font-weight:600">Design / Figma</div><div style="display:flex;align-items:center;gap:12px"><div class="meter"><i style="width:76%"></i></div><div style="width:34px;text-align:right">76%</div></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>軟技能</h3>
+        <div style="margin-top:8px;color:var(--muted)">
+          團隊協作、專案管理、溝通表達、快速學習
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>工具</h3>
+        <div style="margin-top:8px;color:var(--muted)">VSCode · Git · Figma · Photoshop · Excel</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 style="margin-top:18px">Projects</h2>
+    <div class="grid-3" style="margin-top:10px">
+      <div class="card projects">
+        <div class="project">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover;background-position:center"></div>
+          <div class="meta"><div style="font-weight:700">Portfolio 2025</div><div style="color:var(--muted)">Web</div></div>
+          <p style="color:var(--muted);margin:0">個人作品集，包含互動動畫與專案說明。</p>
+        </div>
+      </div>
+
+      <div class="card projects">
+        <div class="project">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover;background-position:center"></div>
+          <div class="meta"><div style="font-weight:700">Data Viz Tool</div><div style="color:var(--muted)">Data</div></div>
+          <p style="color:var(--muted);margin:0">簡易資料視覺化工具，支持 CSV 匯入與互動圖表。</p>
+        </div>
+      </div>
+
+      <div class="card projects">
+        <div class="project">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover;background-position:center"></div>
+          <div class="meta"><div style="font-weight:700">Moto Photo Series</div><div style="color:var(--muted)">Photo</div></div>
+          <p style="color:var(--muted);margin:0">攝影企劃：重機與城市光影的系列照片。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 style="margin-top:18px">Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1517949908113-05a1b9f4f8c8?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="g1">
+      <img src="https://images.unsplash.com/photo-1502877828070-33c6f6b1f0b9?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="g2">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="g3">
+      <img src="https://images.unsplash.com/photo-1496483353456-90997957cf99?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="g4">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 style="margin-top:18px">Contact</h2>
+    <div class="contact-grid" style="margin-top:10px">
+      <form class="card contact-form" onsubmit="event.preventDefault();alert('感謝聯絡，已送出！')">
+        <input placeholder="姓名" required>
+        <input placeholder="Email 或 電話" style="margin-top:10px" required>
+        <textarea placeholder="想說的話 / 合作內容" rows="6" style="margin-top:10px"></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:10px">
+          <button class="btn primary" type="submit">送出訊息</button>
+        </div>
+      </form>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px 0">快速聯絡</h3>
+        <div style="color:var(--muted);margin-bottom:10px">Email: <strong>（未提供）</strong></div>
+        <div style="color:var(--muted);margin-bottom:10px">IG: <strong>（未提供）</strong></div>
+        <div style="color:var(--muted)">所在地：<strong>（未提供）</strong><strong>（未提供）</strong></div>
+        <div style="margin-top:12px"><button class="btn ghost" onclick="window.open('mailto:r1-hue@example.com')">發郵件</button></div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>© r1-hue · 2025</div>
+  <div style="color:var(--muted)">Built with ❤️ · 綠黃綠黑主題</div>
+</footer>
+
+  </div>  <script>
+    // small interactions
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click', e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})}));
+
+    // lazy load gallery images (simple)
+    document.addEventListener('DOMContentLoaded',()=>{
+      const imgs = document.querySelectorAll('.gallery img');
+      imgs.forEach(img=>{img.loading='lazy'});
+    });
+  </script></body>
+</html>
